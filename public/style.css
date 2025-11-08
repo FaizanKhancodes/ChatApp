@@ -1,0 +1,252 @@
+/* ===== Base Layout ===== */
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #5c6bc0, #3949ab);
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== Sidebar (User List) ===== */
+.chat-wrapper {
+  display: flex;
+  gap: 12px;
+}
+
+.users-panel {
+  width: 150px;
+  background: #f0f0f8;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 0.9em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  height: 520px;
+  overflow-y: auto;
+}
+
+.users-panel h3 {
+  margin-top: 0;
+  text-align: center;
+  color: #3949ab;
+}
+
+.users-panel li {
+  list-style: none;
+  margin: 6px 0;
+  color: #333;
+}
+
+/* ===== Chat Container ===== */
+.chat-container {
+  width: 480px;
+  max-width: 90vw;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+h2 {
+  background: #3949ab;
+  color: white;
+  margin: 0;
+  padding: 15px;
+  text-align: center;
+}
+
+.chat-box {
+  height: 400px;
+  overflow-y: auto;
+  padding: 10px 0;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
+}
+
+/* ===== Chat Bubbles ===== */
+.bubble-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 8px 0;
+  width: 100%;
+  max-width: 75%; /* Bubbles occupy 75% of chat width */
+  animation: fadeIn 0.2s ease-in;
+  word-wrap: break-word;
+}
+
+.bubble-wrapper.self {
+  align-self: flex-end;
+  text-align: right;
+  padding-right: 8px;
+}
+
+.bubble-wrapper.other {
+  align-self: flex-start;
+  text-align: left;
+  padding-left: 8px;
+}
+
+/* Username above bubble */
+.bubble-username {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 3px;
+}
+
+/* Base bubble style */
+.chat-bubble {
+  background: #e3f2fd;
+  padding: 10px 14px;
+  border-radius: 12px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word; /* ensure very long words break */
+  word-break: break-word;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  display: inline-block;
+  max-width: 75%;
+}
+
+/* Sent (self) bubbles */
+.bubble-wrapper.self .chat-bubble {
+  background: #b3c2ff;
+  border-radius: 14px 14px 4px 14px;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+/* Received (other) bubbles */
+.bubble-wrapper.other .chat-bubble {
+  background: #e5e7f3;
+  border-radius: 14px 14px 14px 4px;
+  margin-right: auto;
+  margin-left: 0;
+}
+
+/* Timestamp */
+.chat-time {
+  display: block;
+  font-size: 0.7rem;
+  color: #555;
+  text-align: right;
+  margin-top: 5px;
+  opacity: 0.8;
+}
+
+/* Smooth Fade */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Input Area ===== */
+.input-area {
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  background: #eee;
+  align-items: flex-end;
+}
+
+#username {
+  flex: 0 0 120px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+
+/* Multiline message box */
+#messageInput {
+  flex: 1;
+  resize: none;
+  min-height: 40px;
+  max-height: 120px;
+  overflow-y: auto;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: height 0.15s ease;
+}
+
+.input-area button {
+  background: #3949ab;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.input-area button:hover {
+  background: #5c6bc0;
+}
+
+/* ===== System & Typing Messages ===== */
+.system-message {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 5px;
+  font-size: 0.9em;
+}
+
+#typingIndicator {
+  margin-top: 5px;
+  margin-bottom: 4px;
+  text-align: left;
+  color: #666;
+  font-style: italic;
+  font-size: 0.9em;
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+
+.fade-out {
+  opacity: 0;
+}
+
+.new-message-indicator {
+  position: absolute;
+  bottom: 70px; /* just above input area */
+  left: 50%;
+  transform: translateX(-50%);
+  background: #3949ab;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.new-message-indicator.show {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+.chat-container {
+  position: relative; /* so the indicator positions correctly */
+}
