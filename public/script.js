@@ -1,4 +1,4 @@
-const ws = new WebSocket(`ws://${window.location.host}`);
+const ws = new WebSocket("wss://chatapp-server-3ygw.onrender.com");
 ws.binaryType = "text";
 
 const chatBox = document.getElementById("chatBox");
